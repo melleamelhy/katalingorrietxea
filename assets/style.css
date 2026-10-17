@@ -31,7 +31,7 @@ p{margin:0 0 1em}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
 .brand strong{display:block;font-family:var(--serif);font-size:1.15rem;font-weight:600}
 .brand small{display:block;color:var(--muted);font-size:.8rem;letter-spacing:.04em}
-.brand-mark{width:34px;height:34px;border-radius:50%;background:conic-gradient(var(--red) 0 25%,var(--green) 0 50%,var(--red) 0 75%,var(--green) 0);flex:none}
+.brand-mark{width:44px;height:38px;flex:none;display:block}
 .nav{display:flex;align-items:center;gap:22px}
 .nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
 .nav a[aria-current]{color:var(--red)}
