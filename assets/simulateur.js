@@ -134,7 +134,7 @@
       '<details class="simu-detail"><summary>Voir le détail nuit par nuit</summary><ul>'+lignes+'</ul></details>'+
       '<p class="muted small">Taxe de séjour non incluse dans ce prix : elle est à régler à part, à l\'arrivée.</p><p class="muted small">Ce simulateur ne garantit pas la disponibilité des dates : envoyez-nous votre demande, nous vous confirmerons si elles sont encore libres.</p>'+
       (gite?'<p class="muted small">Nous demandons une attestation d’assurance villégiature couvrant les dates du séjour. La plupart des assurances habitation l’incluent déjà : il suffit de demander l’attestation à votre assureur.</p>':'')+
-      '<a class="btn" href="contact.html?logement='+encodeURIComponent(L.contact)+'&arrivee='+f.arrivee.value+'&depart='+f.depart.value+'#reserver">Demander cette réservation</a>';
+      '<a class="btn" href="contact.html?logement='+encodeURIComponent(L.contact)+'&arrivee='+f.arrivee.value+'&depart='+f.depart.value+(gite?'&linge='+kits+'&menage='+(menage?1:0):'')+'#reserver">Demander cette réservation</a>';
   }
   calc();
 })();

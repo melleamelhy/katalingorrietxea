@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://katalingorrietxea.com/contact.html">
 <meta property="og:url" content="https://katalingorrietxea.com/contact.html">
@@ -40,6 +40,7 @@
     <label>Logement<select name="logement"><option>Gîte Ekilore</option><option>Gîte Poppy</option><option>Chambre d&#x27;hôtes Péonia</option><option>Chambre d&#x27;hôtes Lilitsu</option><option>Je ne sais pas encore</option></select></label>
     <div class="row"><label>Arrivée<input type="date" name="arrivee" required></label><label>Départ<input type="date" name="depart" required></label></div>
     <div class="row"><label>Adultes<input type="number" name="adultes" min="1" value="2"></label><label>Enfants<input type="number" name="enfants" min="0" value="0"></label></div>
+    <div class="row" id="opt-gite"><label>Location de linge (20 € par lit)<input type="number" name="linge" min="0" max="5" value="0"></label><label><span class="check"><input type="checkbox" name="menage"> Ménage de fin de séjour (50 €)</span></label></div>
     <label><span class="check"><input type="checkbox" name="curiste"> Séjour de cure à Cambo-les-Bains</span></label>
     <div class="row"><label>Nom<input name="nom" required autocomplete="name"></label><label>Téléphone<input name="tel" type="tel" autocomplete="tel"></label></div>
     <label>Message<textarea name="message" rows="4" placeholder="Une question, une demande particulière…"></textarea></label>
@@ -74,6 +75,6 @@
   <div class="wrap footer-bottom">© Katalin Gorri Etxea · Halsou</div>
 </footer>
 <div class="lightbox" hidden><button class="lb-close" aria-label="Fermer">×</button><button class="lb-prev" aria-label="Photo précédente">‹</button><img alt=""><button class="lb-next" aria-label="Photo suivante">›</button><p class="lb-count"></p></div>
-<script src="assets/site.js?v=4"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

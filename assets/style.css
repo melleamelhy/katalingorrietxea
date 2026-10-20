@@ -243,3 +243,5 @@ p{margin:0 0 1em}
 .hero-photos{margin-top:18px}
 
 .tax-note{margin:-40px 0 56px;font-size:.93rem;color:var(--muted)}
+
+#opt-gite[hidden]{display:none}

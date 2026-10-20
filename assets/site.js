@@ -31,14 +31,15 @@
     var q=new URLSearchParams(location.search).get('logement');
     if(q){[].forEach.call(f.logement.options,function(o){if(o.text.indexOf(q)>-1)o.selected=true})}
     var today=new Date().toISOString().slice(0,10);f.arrivee.min=today;f.depart.min=today;
-    var qs=new URLSearchParams(location.search);if(qs.get('arrivee'))f.arrivee.value=qs.get('arrivee');if(qs.get('depart'))f.depart.value=qs.get('depart');
+    var qs=new URLSearchParams(location.search);if(qs.get('arrivee'))f.arrivee.value=qs.get('arrivee');if(qs.get('depart'))f.depart.value=qs.get('depart');if(qs.get('linge'))f.linge.value=qs.get('linge');if(qs.get('menage')==='1')f.menage.checked=true;var og=document.getElementById('opt-gite');function tg(){if(og)og.hidden=!/^Gîte/.test(f.logement.value)}f.logement.addEventListener('change',tg);tg();
     f.arrivee.addEventListener('change',function(){f.depart.min=f.arrivee.value});
     f.addEventListener('submit',function(ev){
       ev.preventDefault();
       var d=function(v){return v?v.split('-').reverse().join('/'):''};
+      var g=/^Gîte/.test(f.logement.value),nl=Math.max(0,parseInt(f.linge.value,10)||0),opt=g?'\nLocation de linge : '+(nl?nl+' lit'+(nl>1?'s':'')+' × 20 € = '+(nl*20)+' €':'non')+'\nMénage de fin de séjour : '+(f.menage.checked?'oui (50 €)':'non'):'';
       var body='Bonjour,\n\nJe souhaite des informations pour : '+f.logement.value+
         '\nArrivée : '+d(f.arrivee.value)+'\nDépart : '+d(f.depart.value)+
-        '\nAdultes : '+f.adultes.value+' — Enfants : '+f.enfants.value+
+        '\nAdultes : '+f.adultes.value+' — Enfants : '+f.enfants.value+opt+
         (f.curiste.checked?'\nSéjour de cure à Cambo-les-Bains':'')+
         (f.message.value?'\n\n'+f.message.value:'')+
         '\n\n'+f.nom.value+(f.tel.value?'\n'+f.tel.value:'');
