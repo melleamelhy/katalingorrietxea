@@ -104,8 +104,8 @@
   var f=document.getElementById('simu');
   if(!f)return;
   var out=document.getElementById('simu-result'),lingeRow=document.getElementById('simu-linge'),menageRow=document.getElementById('simu-menage');
-  f.arrivee.min='2026-10-20';f.arrivee.max='2028-01-01';
-  f.depart.min='2026-10-21';f.depart.max='2028-01-02';
+  var td=new Date(),tdi=td.getFullYear()+'-'+String(td.getMonth()+1).padStart(2,'0')+'-'+String(td.getDate()).padStart(2,'0');f.arrivee.min=tdi>'2026-10-20'?tdi:'2026-10-20';f.arrivee.max='2028-01-01';
+  f.depart.min=f.arrivee.min;f.depart.max='2028-01-02';
   f.arrivee.addEventListener('change',function(){if(f.arrivee.value){var d=parse(f.arrivee.value);d.setUTCDate(d.getUTCDate()+1);f.depart.min=iso(d);if(!f.depart.value||f.depart.value<=f.arrivee.value){d.setUTCDate(d.getUTCDate()+6);f.depart.value=iso(d)}}calc()});
   f.addEventListener('input',calc);
   f.addEventListener('change',calc);
