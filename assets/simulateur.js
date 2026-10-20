@@ -95,6 +95,8 @@
     return null;
   }
 
+  window.KGE_estimer=function(key,av,dv,kits,men){var L=LOGEMENTS[key];if(!L||!av||!dv)return null;var a=parse(av),b=parse(dv);if(b<=a)return null;var ns=[],d=new Date(a);while(d<b){var n=nuit(L,d);if(!n)return null;ns.push(n);d.setUTCDate(d.getUTCDate()+1)}var gite=L.type==='gite',sem=gite?Math.floor(ns.length/7):0,tot=0;ns.forEach(function(n,i){if(i<sem*7){var blk=ns.slice(Math.floor(i/7)*7,Math.floor(i/7)*7+7),has=blk.some(function(x){return x.sp});tot+=n.sp?n.prix:n.base-(has&&L.remise?2:0)}else tot+=n.prix});var lg=gite?Math.max(0,kits|0)*LINGE:0,mn=gite&&men?50:0;return {nuits:ns.length,heb:tot,linge:lg,menage:mn,total:tot+lg+mn,gite:gite}};
+
   var f=document.getElementById('simu');
   if(!f)return;
   var out=document.getElementById('simu-result'),lingeRow=document.getElementById('simu-linge'),menageRow=document.getElementById('simu-menage');

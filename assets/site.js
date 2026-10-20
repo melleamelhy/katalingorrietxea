@@ -33,13 +33,14 @@
     var today=new Date().toISOString().slice(0,10);f.arrivee.min=today;f.depart.min=today;
     var qs=new URLSearchParams(location.search);if(qs.get('arrivee'))f.arrivee.value=qs.get('arrivee');if(qs.get('depart'))f.depart.value=qs.get('depart');if(qs.get('linge'))f.linge.value=qs.get('linge');if(qs.get('menage')==='1')f.menage.checked=true;var og=document.getElementById('opt-gite');function tg(){if(og)og.hidden=!/^Gîte/.test(f.logement.value)}f.logement.addEventListener('change',tg);tg();
     f.arrivee.addEventListener('change',function(){f.depart.min=f.arrivee.value});
+        function est(){if(!window.KGE_estimer)return null;var v=f.logement.value.toLowerCase(),k=/ekilore/.test(v)?'ekilore':/poppy/.test(v)?'poppy':/p.onia/.test(v)?'peonia':/lilitsu/.test(v)?'lilitsu':'';if(!k)return null;return window.KGE_estimer(k,f.arrivee.value,f.depart.value,parseInt(f.linge.value,10)||0,f.menage.checked)}function e2(n){return n.toLocaleString('fr-FR')+' €'}var ep=document.getElementById('estim');function showE(){if(!ep)return;var e=est();ep.hidden=!e;if(e)ep.textContent='Prix estimé : '+e2(e.total)+' pour '+e.nuits+' nuit'+(e.nuits>1?'s':'')+(e.linge||e.menage?' (hébergement '+e2(e.heb)+(e.linge?' + linge '+e2(e.linge):'')+(e.menage?' + ménage '+e2(e.menage):'')+')':'')+', taxe de séjour en plus.'}f.addEventListener('input',showE);f.addEventListener('change',showE);showE();
     f.addEventListener('submit',function(ev){
       ev.preventDefault();
       var d=function(v){return v?v.split('-').reverse().join('/'):''};
       var g=/^Gîte/.test(f.logement.value),nl=Math.max(0,parseInt(f.linge.value,10)||0),opt=g?'\nLocation de linge : '+(nl?nl+' lit'+(nl>1?'s':'')+' × 20 € = '+(nl*20)+' €':'non')+'\nMénage de fin de séjour : '+(f.menage.checked?'oui (50 €)':'non'):'';
       var body='Bonjour,\n\nJe souhaite des informations pour : '+f.logement.value+
         '\nArrivée : '+d(f.arrivee.value)+'\nDépart : '+d(f.depart.value)+
-        '\nAdultes : '+f.adultes.value+' — Enfants : '+f.enfants.value+opt+
+        '\nAdultes : '+f.adultes.value+' — Enfants : '+f.enfants.value+opt+(function(){var e=est();return e?'\nPrix estimé par le simulateur : '+e2(e.total)+' pour '+e.nuits+' nuit'+(e.nuits>1?'s':'')+(e.linge||e.menage?' (hébergement '+e2(e.heb)+(e.linge?' + linge '+e2(e.linge):'')+(e.menage?' + ménage '+e2(e.menage):'')+')':'')+', taxe de séjour en plus':''})()+
         (f.curiste.checked?'\nSéjour de cure à Cambo-les-Bains':'')+
         (f.message.value?'\n\n'+f.message.value:'')+
         '\n\n'+f.nom.value+(f.tel.value?'\n'+f.tel.value:'');
