@@ -4,7 +4,7 @@
   if(t&&n)t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o)});
 
   // galeries : construites depuis la liste d'identifiants Wix
-  function wurl(id,w,h,m){id=id.indexOf('http')===0||id.indexOf('_')===6&&id.indexOf('296fe6')===0?id:'296fe6_'+id;return 'https://static.wixstatic.com/media/'+id+'/v1/'+(m||'fill')+'/w_'+w+',h_'+h+',al_c,q_85,enc_auto/'+id}
+  function wurl(id,w,h,m){if(/^(https?:|\/|assets\/)/.test(id))return id;id=id.indexOf('http')===0||id.indexOf('_')===6&&id.indexOf('296fe6')===0?id:'296fe6_'+id;return 'https://static.wixstatic.com/media/'+id+'/v1/'+(m||'fill')+'/w_'+w+',h_'+h+',al_c,q_85,enc_auto/'+id}
   document.querySelectorAll('.gallery[data-ids]').forEach(function(g){
     g.dataset.ids.split(' ').forEach(function(id,k){var a=document.createElement('a');a.className='g-item';a.href=wurl(id,1800,1800,'fit');var im=new Image();im.src=wurl(id,640,480);im.alt=g.dataset.alt+' '+(k+1);im.loading='lazy';a.appendChild(im);g.appendChild(a)});
   });
