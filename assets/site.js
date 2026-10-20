@@ -36,13 +36,13 @@
     f.addEventListener('submit',function(ev){
       ev.preventDefault();
       var d=function(v){return v?v.split('-').reverse().join('/'):''};
-      var body='Bonjour,\n\nJe souhaite réserver : '+f.logement.value+
+      var body='Bonjour,\n\nJe souhaite des informations pour : '+f.logement.value+
         '\nArrivée : '+d(f.arrivee.value)+'\nDépart : '+d(f.depart.value)+
         '\nAdultes : '+f.adultes.value+' — Enfants : '+f.enfants.value+
         (f.curiste.checked?'\nSéjour de cure à Cambo-les-Bains':'')+
         (f.message.value?'\n\n'+f.message.value:'')+
         '\n\n'+f.nom.value+(f.tel.value?'\n'+f.tel.value:'');
-      location.href='mailto:'+f.dataset.email+'?subject='+encodeURIComponent('Demande de réservation — '+f.logement.value)+'&body='+encodeURIComponent(body);
+      location.href='mailto:'+f.dataset.email+'?subject='+encodeURIComponent('Demande d’information — '+f.logement.value)+'&body='+encodeURIComponent(body);
     });
   }
 })();
