@@ -4,8 +4,9 @@
   var LOGEMENTS = {
     // Gîtes : [début, fin exclue, nuit dim.→jeu., nuit week-end, prix par nuit si semaine complète, (dates des nuits week-end si particulières)]
     ekilore: {
-      nom: 'Gîte Ekilore', type: 'gite', contact: 'Ekilore', remise: true, spec: {'2027-05-08':115,'2027-03-28':98,'2027-05-14':115,'2027-05-15':115,'2027-05-16':115,'2027-10-29':110,'2027-10-30':110,'2027-10-31':110},
+      nom: 'Gîte Ekilore', type: 'gite', contact: 'Ekilore', remise: true, spec: {'2026-10-29':110,'2026-10-30':110,'2026-10-31':110,'2027-05-08':115,'2027-03-28':98,'2027-05-14':115,'2027-05-15':115,'2027-05-16':115,'2027-10-29':110,'2027-10-30':110,'2027-10-31':110},
       periodes: [
+        ['2026-10-17','2026-10-23',85,98,85],['2026-10-23','2026-11-06',90,110,90],['2026-11-06','2026-12-18',85,98,85],['2026-12-18','2027-01-02',92,120,92,['2026-12-23','2026-12-24','2026-12-25','2026-12-30','2026-12-31','2027-01-01']],
         ['2027-01-02','2027-02-06',85,98,85],
         ['2027-02-06','2027-03-13',90,110,90],
         ['2027-03-13','2027-04-03',85,98,85],
@@ -29,8 +30,9 @@
       ]
     },
     poppy: {
-      nom: 'Gîte Poppy', type: 'gite', contact: 'Poppy', spec: {'2027-03-28':85,'2027-05-14':95,'2027-05-15':95,'2027-05-16':95,'2027-10-29':80,'2027-10-30':80,'2027-10-31':80},
+      nom: 'Gîte Poppy', type: 'gite', contact: 'Poppy', spec: {'2026-10-29':80,'2026-10-30':80,'2026-10-31':80,'2027-03-28':85,'2027-05-14':95,'2027-05-15':95,'2027-05-16':95,'2027-10-29':80,'2027-10-30':80,'2027-10-31':80},
       periodes: [
+        ['2026-10-17','2026-10-23',70,85,70],['2026-10-23','2026-11-06',75,89,77],['2026-11-06','2026-12-18',70,85,70],['2026-12-18','2027-01-02',80,95,80,['2026-12-23','2026-12-24','2026-12-25','2026-12-30','2026-12-31','2027-01-01']],
         ['2027-01-02','2027-02-06',70,85,70],
         ['2027-02-06','2027-03-13',75,89,77],
         ['2027-03-13','2027-04-03',70,85,70],
@@ -56,6 +58,7 @@
     },    peonia: {
       nom: "Chambre d'hôtes Péonia", type: 'chambre', contact: 'Péonia',
       periodes: [
+        ['2026-10-17','2027-01-02',96,96],
         ['2027-01-02','2027-06-19',96,96],
         ['2027-06-19','2027-07-03',96,96],
         ['2027-07-03','2027-09-04',106,106],
@@ -66,6 +69,7 @@
     lilitsu: {
       nom: "Chambre d'hôtes Lilitsu", type: 'chambre', contact: 'Lilitsu',
       periodes: [
+        ['2026-10-17','2027-01-02',110,110],
         ['2027-01-02','2027-06-19',110,110],
         ['2027-06-19','2027-07-03',110,110],
         ['2027-07-03','2027-09-04',120,120],
@@ -100,8 +104,8 @@
   var f=document.getElementById('simu');
   if(!f)return;
   var out=document.getElementById('simu-result'),lingeRow=document.getElementById('simu-linge'),menageRow=document.getElementById('simu-menage');
-  f.arrivee.min='2027-01-02';f.arrivee.max='2028-01-01';
-  f.depart.min='2027-01-03';f.depart.max='2028-01-02';
+  f.arrivee.min='2026-10-20';f.arrivee.max='2028-01-01';
+  f.depart.min='2026-10-21';f.depart.max='2028-01-02';
   f.arrivee.addEventListener('change',function(){if(f.arrivee.value){var d=parse(f.arrivee.value);d.setUTCDate(d.getUTCDate()+1);f.depart.min=iso(d);if(!f.depart.value||f.depart.value<=f.arrivee.value){d.setUTCDate(d.getUTCDate()+6);f.depart.value=iso(d)}}calc()});
   f.addEventListener('input',calc);
   f.addEventListener('change',calc);
@@ -115,7 +119,7 @@
     var nuits=[],d=new Date(a),ete=false;
     while(d<b){
       var n=nuit(L,d);
-      if(!n){out.innerHTML='<p class="simu-warn">'+'Le simulateur couvre les séjours du 2 janvier 2027 au 2 janvier 2028.'+'</p><a class="btn" href="contact.html?logement='+encodeURIComponent(L.contact)+'&arrivee='+f.arrivee.value+'&depart='+f.depart.value+'#reserver">Demander un tarif</a>';return}
+      if(!n){out.innerHTML='<p class="simu-warn">'+'Le simulateur couvre les séjours du 20 octobre 2026 au 2 janvier 2028.'+'</p><a class="btn" href="contact.html?logement='+encodeURIComponent(L.contact)+'&arrivee='+f.arrivee.value+'&depart='+f.depart.value+'#reserver">Demander un tarif</a>';return}
       var m=d.getUTCMonth();if(m>=5&&m<=8)ete=true;
       nuits.push(n);d.setUTCDate(d.getUTCDate()+1);
     }
